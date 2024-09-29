@@ -1,4 +1,4 @@
-# Flood Destruction Assessment in Larkana, Sukkur, and Shikarpur, Pakistan
+# Assessment of flood destruction through remote sensing in Larkana, Sukkur and Shikarpur, Pakistan
 
 ## Overview
 
