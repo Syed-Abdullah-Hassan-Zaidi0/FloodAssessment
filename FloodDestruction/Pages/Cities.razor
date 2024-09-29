@@ -1,0 +1,58 @@
+﻿@page "/cities"
+
+ 
+ 
+
+
+<div class="w-full py-12 lg:py-24">
+    <div class="container grid items-start gap-6 lg:gap-12">
+        <div class="grid items-start gap-4">
+            <h1 class="text-3xl font-bold tracking-tight">Cities</h1>
+            <p class="text-black-500:text-black-400"> These are the cities which get most affected by floods in Sindh. Also our area of studies. We assess the extents and severity of flood destrcution in these cities using Remote sensing technique.</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 items-start gap-6 lg:gap-12">
+            <div class="flex flex-col items-start gap-2">
+                <a href="/larkana">
+                    <div class="relative grid w-full aspect-w-2048 aspect-h-1152 rounded-lg overflow-hidden transform transition-transform duration-300 hover:translate-y-[-10px]">
+                        <img src="Pictures/Larkana.PNG"
+                             alt="Larkana"
+                             class="object-cover"
+                             style="object-fit: cover;" />
+                        <div class="absolute inset-0 flex flex-col items-center justify-center p-4 text-center bg-black bg-opacity-50 text-white dark:bg-white dark:bg-opacity-50">
+                            <span class="text-2xl font-semibold">Larkana</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="flex flex-col items-start gap-2">
+                <a href="/sukkur">
+                    <div class="relative grid w-100 h-full rounded-lg overflow-hidden transform transition-transform duration-300 hover:translate-y-[-10px]">
+                        <img src="Pictures/Sukkur.jpg"
+                             alt="Sukkur"
+                             class="object-cover"
+                             style="object-fit: cover;" />
+                        <div class="absolute inset-0 flex flex-col items-center justify-center p-4 text-center bg-black bg-opacity-50 text-white dark:bg-white dark:bg-opacity-50">
+                            <span class="text-2xl font-semibold">Sukkur</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="flex flex-col items-start gap-2">
+                <a href="/shikarpur">
+                    <div class="relative grid w-full h-full aspect-w-2048 h-full rounded-lg overflow-hidden transform transition-transform duration-300 hover:translate-y-[-10px]">
+                        <img src="Pictures/Sikharpur.PNG"
+                             alt="Shikarpur"
+                             class="object-cover"
+                             style="object-fit: cover;" />
+                        <div class="absolute inset-0 flex flex-col items-center justify-center p-4 text-center bg-black bg-opacity-50 text-white dark:bg-white dark:bg-opacity-50">
+                            <span class="text-2xl font-semibold">Shikarpur</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>

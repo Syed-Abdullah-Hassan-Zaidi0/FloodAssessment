@@ -1,0 +1,290 @@
+﻿@page "/"
+@using ClassLibraryDAL
+@using ClassLibraryModel
+
+
+<PageTitle>Home</PageTitle>
+
+
+<main>
+    <section id="hero" class="bg-gray-600 text-black py-20" style="background-image: url('Pictures/Flood1.jpg'); background-size: cover; background-position: center; opacity: 0.8;">
+        <div class="container mx-auto text-center">
+            <h1 class="text-4xl font-bold mb-4">Flood Destruction Assessment with Remote Sensing</h1>
+            <p class="text-3xl font-bold mb-8">
+                Leveraging satellite imagery and advanced analytics to provide comprehensive flood damage assessments.
+            </p>
+        </div>
+    </section>
+
+
+
+    <section class="py-12">
+        <div class="container mx-auto">
+            <h2 class="text-2xl font-bold mb-6">Flood Preparedness Tips</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-gray-100 rounded-md p-6">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         width="24"
+                         height="24"
+                         viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="currentColor"
+                         stroke-width="2"
+                         stroke-linecap="round"
+                         stroke-linejoin="round"
+                         class="h-8 w-8 mb-4 text-blue-500">
+                        <path d="M22 12a10.06 10.06 1 0 0-20 0Z"></path>
+                        <path d="M12 12v8a2 2 0 0 0 4 0"></path>
+                        <path d="M12 2v1"></path>
+                    </svg>
+                    <h3 class="text-xl font-bold mb-2">Stay Informed</h3>
+                    <p>Monitor local news or our site and check weather forcast</p>
+                </div>
+                <div class="bg-gray-100 rounded-md p-6">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         width="24"
+                         height="24"
+                         viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="currentColor"
+                         stroke-width="2"
+                         stroke-linecap="round"
+                         stroke-linejoin="round"
+                         class="h-8 w-8 mb-4 text-blue-500">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="m4.93 4.93 4.24 4.24"></path>
+                        <path d="m14.83 9.17 4.24-4.24"></path>
+                        <path d="m14.83 14.83 4.24 4.24"></path>
+                        <path d="m9.17 14.83-4.24 4.24"></path>
+                        <circle cx="12" cy="12" r="4"></circle>
+                    </svg>
+                    <h3 class="text-xl font-bold mb-2">Prepare Your Home</h3>
+                    <p>Secure your home by clearing gutters, elevating valuables, and having emergency supplies on hand.</p>
+                </div>
+                <div class="bg-gray-100 rounded-md p-6">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         width="24"
+                         height="24"
+                         viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="currentColor"
+                         stroke-width="2"
+                         stroke-linecap="round"
+                         stroke-linejoin="round"
+                         class="h-8 w-8 mb-4 text-blue-500">
+                        <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"></path>
+                        <circle cx="7" cy="17" r="2"></circle>
+                        <path d="M9 17h6"></path>
+                        <circle cx="17" cy="17" r="2"></circle>
+                    </svg>
+                    <h3 class="text-xl font-bold mb-2">Have a Plan</h3>
+                    <p>
+                        Develop an evacuation plan and know your local emergency shelters in case you need to leave your home.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="bg-gray-100 py-12">
+        <div class="container mx-auto">
+            <h2 class="text-2xl font-bold mb-6">Emergency Contacts</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white rounded-md p-6 shadow-md">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         width="24"
+                         height="24"
+                         viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="currentColor"
+                         stroke-width="2"
+                         stroke-linecap="round"
+                         stroke-linejoin="round"
+                         class="h-8 w-8 mb-4 text-blue-500">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                    </svg>
+                    <h3 class="text-xl font-bold mb-2">Local Emergency Services</h3>
+                    <p>Call 1122 for immediate assistance.</p>
+                </div>
+                <div class="bg-white rounded-md p-6 shadow-md">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         width="24"
+                         height="24"
+                         viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="currentColor"
+                         stroke-width="2"
+                         stroke-linecap="round"
+                         stroke-linejoin="round"
+                         class="h-8 w-8 mb-4 text-blue-500">
+                        <path d="M6.5 12c.94-3.46 4.94-6 8.5-6 3.56 0 6.06 2.54 7 6-.94 3.47-3.44 6-7 6s-7.56-2.53-8.5-6Z"></path>
+                        <path d="M18 12v.5"></path>
+                        <path d="M16 17.93a9.77 9.77 0 0 1 0-11.86"></path>
+                        <path d="M7 10.67C7 8 5.58 5.97 2.73 5.5c-1 1.5-1 5 .23 6.5-1.24 1.5-1.24 5-.23 6.5C5.58 18.03 7 16 7 13.33"></path>
+                        <path d="M10.46 7.26C10.2 5.88 9.17 4.24 8 3h5.8a2 2 0 0 1 1.98 1.67l.23 1.4"></path>
+                        <path d="m16.01 17.93-.23 1.4A2 2 0 0 1 13.8 21H9.5a5.96 5.96 0 0 0 1.49-3.98"></path>
+                    </svg>
+                    <h3 class="text-xl font-bold mb-2">Flood Hotline</h3>
+                    <p>Call 1122 or local NGO's  for the latest updates.</p>
+                </div>
+                <div class="bg-white rounded-md p-6 shadow-md">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         width="24"
+                         height="24"
+                         viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="currentColor"
+                         stroke-width="2"
+                         stroke-linecap="round"
+                         stroke-linejoin="round"
+                         class="h-8 w-8 mb-4 text-blue-500">
+                        <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"></path>
+                        <path d="M9 18h6"></path>
+                        <path d="M10 22h4"></path>
+                    </svg>
+                    <h3 class="text-xl font-bold mb-2">Power Outages</h3>
+                    <p>Report power outages to your power supplier</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-12">
+        <div class="container mx-auto">
+            <h2 class="text-2xl font-bold mb-6">Helpful Resources</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-gray-100 rounded-md p-6">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         width="24"
+                         height="24"
+                         viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="currentColor"
+                         stroke-width="2"
+                         stroke-linecap="round"
+                         stroke-linejoin="round"
+                         class="h-8 w-8 mb-4 text-blue-500">
+                        <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path>
+                    </svg>
+                    <h3 class="text-xl font-bold mb-2">Flood Preparedness Guide</h3>
+                   
+                    <a class="text-blue-500 font-medium hover:underline" href="/prepare">
+                        Read More
+                    </a>
+                </div>
+                <div class="bg-gray-100 rounded-md p-6">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         width="24"
+                         height="24"
+                         viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="currentColor"
+                         stroke-width="2"
+                         stroke-linecap="round"
+                         stroke-linejoin="round"
+                         class="h-8 w-8 mb-4 text-blue-500">
+                        <path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z"></path>
+                        <path d="M15 5.764v15"></path>
+                        <path d="M9 3.236v15"></path>
+                    </svg>
+                    <h3 class="text-xl font-bold mb-2"> Read About Floods in Pakistan</h3>
+                   
+                    <a class="text-blue-500 font-medium hover:underline" href="/finfo">
+                        View Pakistan situation
+                    </a>
+                </div>
+                <div class="bg-gray-100 rounded-md p-6">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         width="24"
+                         height="24"
+                         viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="currentColor"
+                         stroke-width="2"
+                         stroke-linecap="round"
+                         stroke-linejoin="round"
+                         class="h-8 w-8 mb-4 text-blue-500">
+                        <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"></path>
+                        <path d="M18 14h-8"></path>
+                        <path d="M15 18h-5"></path>
+                        <path d="M10 6h8v4h-8V6Z"></path>
+                    </svg>
+                    <h3 class="text-xl font-bold mb-2">Flood News about 3 major Cities of Sindh </h3>
+                    
+                    <a class="text-blue-500 font-medium hover:underline" href="/cities">
+                        Learn more
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+   
+
+    <main class="flex flex-col items-center justify-center">
+        <section class="w-full py-12  bg-gray-100">
+            <div class="container mx-auto px-4 md:px-6">
+                <h2 class="text-2xl font-bold mb-6">Technique we used </h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="flex flex-col items-center text-center bg-white p-6 rounded-md">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                             width="24"
+                             height="24"
+                             viewBox="0 0 24 24"
+                             fill="none"
+                             stroke="currentColor"
+                             stroke-width="2"
+                             stroke-linecap="round"
+                             stroke-linejoin="round"
+                             class="h-12 w-12 text-indigo-500 mb-4">
+                            <path d="M13 7 9 3 5 7l4 4"></path>
+                            <path d="m17 11 4 4-4 4-4-4"></path>
+                            <path d="m8 12 4 4 6-6-4-4Z"></path>
+                            <path d="m16 8 3-3"></path>
+                            <path d="M9 21a6 6 0 0 0-6-6"></path>
+                        </svg>
+                        <h3 class="text-2xl font-bold mb-2">Satellite Imagery</h3>
+                        <p class="text-gray-600">
+                            Utilize high-resolution satellite imagery to assess the extent and impact of floods.
+                        </p>
+                    </div>
+                    <div class="flex flex-col items-center text-center bg-white p-6 rounded-md">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                             width="24"
+                             height="24"
+                             viewBox="0 0 24 24"
+                             fill="none"
+                             stroke="currentColor"
+                             stroke-width="2"
+                             stroke-linecap="round"
+                             stroke-linejoin="round"
+                             class="h-12 w-12 text-indigo-500 mb-4">
+                            <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"></path>
+                        </svg>
+                        <h3 class="text-2xl font-bold mb-2">Google Earth Engine</h3>
+                        <p class="text-gray-600">
+                            Leverage the power of Google Earth Engine to process and analyze satellite data.
+                        </p>
+                    </div>
+                    <div class="flex flex-col items-center text-center bg-white p-6 rounded-md">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                             width="24"
+                             height="24"
+                             viewBox="0 0 24 24"
+                             fill="none"
+                             stroke="currentColor"
+                             stroke-width="2"
+                             stroke-linecap="round"
+                             stroke-linejoin="round"
+                             class="h-12 w-12 text-indigo-500 mb-4">
+                            <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                            <path d="M3 5V19A9 3 0 0 0 21 19V5"></path>
+                            <path d="M3 12A9 3 0 0 0 21 12"></path>
+                        </svg>
+                        <h3 class="text-2xl font-bold mb-2">Datasets</h3>
+                        <p class="text-gray-600">Access a wide range of relevant datasets to enhance your flood assessment.</p>
+                    </div>
+                </div>
+            </div>
+            </section>
+    </main>
+</main>
+
+

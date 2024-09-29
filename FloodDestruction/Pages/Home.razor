@@ -1,0 +1,92 @@
+﻿@page "/"
+@using ClassLibraryDAL
+@using ClassLibraryModel
+
+
+<PageTitle>Home</PageTitle>
+
+<div class="max-w-full mx-auto p-4">
+
+    <header class="mb-6">
+        <h1 class="text-3xl font-bold">Assessment of Flood Destruction in Pakistan</h1>
+    </header>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="rounded-lg shadow-md p-1 flex flex-col items-center relative">
+            <img src="Pictures/original_4.jpg"
+                 alt="Flood"
+                 class="rounded-lg slideshow-img"
+                 width="800"
+                 height="800"
+                 style="object-fit: cover;" />
+            <img src="Pictures/original_2.jpg"
+                 alt="Second Image"
+                 class="rounded-lg slideshow-img hidden"
+                 width="800"
+                 height="800"
+                 style="object-fit: cover;" />
+            <img src="Pictures/original.jpg"
+                 alt="Second Image"
+                 class="rounded-lg slideshow-img hidden"
+                 width="800"
+                 height="800"
+                 style="object-fit: cover;" />
+    
+            <button onclick="prevSlide()" class="prev absolute top-1/2 left-0 transform -translate-y-1/2 rounded-full bg-gray-300 p-2 font-bold">&#10094;</button>
+            <button onclick="nextSlide()" class="next absolute top-1/2 right-0 transform -translate-y-1/2 rounded-full bg-gray-300 p-2 font-bold">&#10095;</button>
+        </div>
+        <div class="rounded-lg shadow-md p-4">
+            <h2 class="text-xl font-semibold mb-4"> Flood Information</h2>
+            <p>
+                Floods in Pakistan are a recurring natural disaster, primarily caused by monsoon rains, glacier melts, and inadequate infrastructure for water management. The country's geographical features, including its vast river systems like the Indus, exacerbate the severity of flooding. The affected cities often include major cities from Sindh like Karachi, Larkana, Sukkar, Shikarpur and many others, where dense populations and insufficient drainage systems lead to widespread devastation. These floods result in loss of life, displacement of communities, destruction of crops, and infrastructure damage, posing significant challenges to Pakistan's economy and development efforts. Efforts to mitigate the impact of floods include improved early warning systems, infrastructure development, and community preparedness measures.
+            </p>
+           
+        </div>
+        @foreach(var item in info_model)
+        {
+            <div class="rounded-lg shadow-md p-4">
+                <h2 class="text-xl font-semibold mb-4">@item.heading</h2>
+                <p>
+                    @item.info
+                </p>
+            </div>
+        }
+
+    </div>
+</div>
+
+<script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slideshow-img');
+
+    function showSlide(n) {
+        slides[currentSlide].classList.add('hidden');
+        currentSlide = (n + slides.length) % slides.length;
+        slides[currentSlide].classList.remove('hidden');
+    }
+
+    function nextSlide() {
+        showSlide(currentSlide + 1);
+    }
+
+    function prevSlide() {
+        showSlide(currentSlide - 1);
+    }
+</script>
+
+@code{
+    private HomeFloodInfoModel infoModel { get; set; } = new HomeFloodInfoModel();
+    private string? msg { get; set; }
+
+    private List<HomeFloodInfoModel> info_model = new List<HomeFloodInfoModel>();
+
+
+    protected override void OnInitialized()
+    {
+        GetCities();
+    }
+    private void GetCities()
+    {
+        info_model = HomeFloodInfoDAL.GetInfo();
+    }
+
+}

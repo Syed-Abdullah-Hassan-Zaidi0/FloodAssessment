@@ -1,0 +1,809 @@
+﻿@page "/shikarpur"
+@using ClassLibraryDAL
+@using ClassLibraryModel
+
+<div class="w-full py-12 lg:py-24">
+    <div class="container mx-auto px-4 max-w-screen-lg">
+        <div class="flex flex-col gap-4">
+            <h1 class="text-3xl font-bold tracking-tight">Floods in Shikarpur</h1>
+            <p class="text-black-500 dark:text-black-400">
+                Shikarpur bore the brunt of the 2022 Pakistan floods alongside Larkana and Jacobabad.  The heavy monsoon rains lashed the district, causing widespread devastation.  All the talukas (subdivisions) of Shikarpur were severely affected, with villages submerged, houses destroyed, and crops ruined. This not only resulted in loss of life and displacement of residents, but also dealt a heavy blow to the district's agricultural output.
+            </p>
+        </div>
+        <div class="grid gap-8 lg:gap-12 relative">
+            <div class="relative">
+                <img src="Pictures/SH1.jpeg"
+                     width="1400"
+                     height="933"
+                     alt="oops"
+                     class="mx-auto rounded-lg overflow-hidden current-image"
+                     style="width: 100%; height: auto; object-fit: cover;" />
+                <button class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 text-white p-2 rounded-full shadow-md prev-btn">
+                    &lt;
+                </button>
+                <button class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 text-white p-2 rounded-full shadow-md next-btn">
+                    &gt;
+                </button>
+            </div>
+        </div>
+        
+    </div>
+    
+</div>
+
+                                                        @* YEAR 2020  *@
+                                                      
+<div class="w-full py-12">
+    <div class="container flex flex-col gap-4 px-4 md:px-6">
+        <div class="flex flex-col gap-4">
+             <h1 class="text-3xl font-bold tracking-tight">Floods Impact in Shikarpur </h1>
+             <h2 class="text-2xl font-bold "> Maps Classification </h2>
+            <h2 class="text-2xl font-bold "> Year 2020 </h2>
+            
+        </div>
+        <div class="grid gap-4 md:grid-cols-3">
+            <div class="flex flex-col gap-2">
+                <img src="Pictures/SHB.png"
+                     alt="Image 1"
+                     width="600"
+                     height="400"
+                     class="aspect-image rounded-lg object-cover overflow-hidden" />
+                <p class="text-sm text-gray-500 dark:text-gray-400"></p>
+            </div>
+            <div class="flex flex-col gap-2">
+                <img src="Pictures/SHD.png"
+                     alt="Image 2"
+                     width="600"
+                     height="400"
+                     class="aspect-image rounded-lg object-cover overflow-hidden" />
+                <p class="text-sm text-gray-500 dark:text-gray-400"></p>
+            </div>
+            <div class="flex flex-col gap-2">
+                <img src="Pictures/SH2020A.PNG"
+                     alt="Image 3"
+                     width="600"
+                     height="400"
+                     class="aspect-image rounded-lg object-cover overflow-hidden" />
+                <p class="text-sm text-gray-500 dark:text-gray-400"></p>
+            </div>
+        </div>
+        <div class="grid gap-4 md:grid-cols-3">
+            <div class="flex flex-col gap-2">
+                <p> <b> BEFORE: </b>  This image depicts a land cover classification map, likely created from data acquired through Google Earth Engine (GEE), for the period of <b> January 1, 2020 </b>, to <b> August 1, 2020 </b>. Urban areas are typically colored red, water bodies are colored blue, and vegetated areas are colored green. The limited blue areas in this image likely represent permanent water bodies like rivers or lakes. This map serves as a valuable reference point for understanding the pre-flood extent of water in the region. Areas currently classified as non-water (likely colored green or red) might be susceptible to flooding during heavy monsoon seasons or extreme weather events.</p>
+
+            </div>
+            <div class="flex flex-col gap-2">
+                <p>
+                    <b> DURING:   </b> This image depicts a land cover classification map, likely created using Google Earth Engine (GEE) data, for the period of <b> August 1, 2020 </b>, to <b> September 27, 2020 </b>. The increased blue color compared to the previous image (dated pre-2020 flood) likely represents inundation caused by the floods.
+
+                </p>
+            </div>
+            <div class="flex flex-col gap-2">
+                <p>
+                    <b> AFTER:  </b> This image likely depicts a land cover classification map, likely created using Google Earth Engine (GEE) data, for the period of <b> October 02, 20202 </b>, to <b> October 31, 2020 </b>. Compared to the image depicting the peak flood period (August 10-20, 2020), this image likely shows a decrease in water coverage in Sukkur.However, the blue areas likely represent significant water presence compared to pre-flood conditions. Areas classified as green or red might still be recovering from floodwaters.
+
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="w-full py-12">
+    <div class="container flex flex-col gap-4 px-4 md:px-6">
+        <div class="flex flex-col gap-4">
+            <h2 class="text-1xl font-bold"> Time Series graph OF Water level </h2>
+
+        </div>
+        <div class="grid gap-4 md:grid-cols-3">
+
+            <div class="flex flex-col gap-2" style="width: 500px; height: 287px;">
+             <img src="Pictures/SHT2020B.PNG"
+              alt="Image 3"
+              width="500"
+              height="287"
+              class="aspect-image rounded-lg object-cover overflow-hidden" />
+              <p class="text-sm text-gray-500 dark:text-gray-400"></p>
+           </div> 
+
+            <div class="flex flex-col gap-2" style="width: 624px; height: 287px;">
+             <img src="Pictures/SHT2020D.PNG"
+            alt="Image 3"
+            width="624"
+            height="287"
+            class="aspect-image rounded-lg object-cover overflow-hidden" />
+            <p class="text-sm text-gray-500 dark:text-gray-400"></p>
+           </div>  
+
+            
+        </div>
+        <div class="grid gap-4 md:grid-cols-3">
+            <div class="flex flex-col gap-2">
+                <p> <b> BEFORE: </b   This image depicts a land cover classification map, likely created from data acquired through Google Earth Engine (GEE), for the period of <b> January 1, 2015 </b>, to <b> August 5, 2015 </b>. Urban areas are typically colored red, water bodies are colored blue, and vegetated areas are colored green. The limited blue areas in this image likely represent permanent water bodies like rivers or lakes. This map serves as a valuable reference point for understanding the pre-flood extent of water in the region. Areas currently classified as non-water (likely colored green or red) might be susceptible to flooding during heavy monsoon seasons or extreme weather events.</p>
+            </div>
+            <div class="flex flex-col gap-2">
+                <p>
+                     <b> DURING:  </b> This image depicts a land cover classification map, likely created using Google Earth Engine (GEE) data, for the period of <b> August 10, 2015 </b>, to <b> August 20, 2015 </b>. The increased blue color compared to the previous image (dated pre-2015 flood) likely represents inundation caused by the floods.
+                </p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+
+
+<div class="w-full py-12">
+    <div class="container flex flex-col gap-4 px-4 md:px-6">
+    
+        <div class="grid gap-4 md:grid-cols-3">
+
+            <div class="flex flex-col gap-2" style="width: 624px; height: 287px;">
+             <img src="Pictures/SHT2020A.PNG"
+              alt="Image 3"
+              width="624"
+              height="287"
+              class="aspect-image rounded-lg object-cover overflow-hidden" />
+              <p class="text-sm text-gray-500 dark:text-gray-400"></p>
+           </div> 
+
+        </div>
+        <div class="grid gap-4 md:grid-cols-3">
+           
+            <div class="flex flex-col gap-2">
+                <p>
+                    <b>AFTER: </b>	This image likely depicts a land cover classification map, likely created using Google Earth Engine (GEE) data, for the period of <b> September 1, 2015 </b>, to <b>September 29, 2015 </b>. Compared to the image depicting the peak flood period (August 10-20, 2015), this image likely shows a decrease in water coverage in Sukkur.However, the blue areas likely represent significant water presence compared to pre-flood conditions. Areas classified as green or red might still be recovering from floodwaters.
+                </p
+            </div>
+        </div>
+    </div>
+</div>
+                         
+                                                     @* YEAR 2021 TO 2022 *@
+                                                     
+<div class="w-full py-12">
+    <div class="container flex flex-col gap-4 px-4 md:px-6">
+        <div class="flex flex-col gap-4">
+
+            <h2 class="text-2xl font-bold "> Year 2021 TO 2022</h2>
+           
+        </div>
+        <div class="grid gap-4 md:grid-cols-3">
+            <div class="flex flex-col gap-2">
+                <img src="Pictures/SH2021.PNG"
+                     alt="Image 1"
+                     width="600"
+                     height="400"
+                     class="aspect-image rounded-lg object-cover overflow-hidden" />
+                <p class="text-sm text-gray-500 dark:text-gray-400"></p>
+            </div>
+           
+           <div class="flex flex-col gap-2" style="width: 624px; height: 287px;">
+             <img src="Pictures/SHT2021.PNG"
+            alt="Image 3"
+            width="624"
+            height="287"
+            class="aspect-image rounded-lg object-cover overflow-hidden" />
+            <p class="text-sm text-gray-500 dark:text-gray-400"></p>
+           </div> 
+
+
+        </div>
+        <div class="grid gap-4 md:grid-cols-3">
+            <div class="flex flex-col gap-2">
+                <p> <b> Water Level: </b   This image depicts a land cover classification map, likely created from data acquired through Google Earth Engine (GEE), for the period of <b> January 1, 2015 </b>, to <b> August 5, 2015 </b>. Urban areas are typically colored red, water bodies are colored blue, and vegetated areas are colored green. The limited blue areas in this image likely represent permanent water bodies like rivers or lakes. This map serves as a valuable reference point for understanding the pre-flood extent of water in the region. Areas currently classified as non-water (likely colored green or red) might be susceptible to flooding during heavy monsoon seasons or extreme weather events.</p>
+            </div>
+            
+            <div class="flex flex-col gap-2">
+                <p>
+                    <b>Time Series Graph: </b>	This image likely depicts a land cover classification map, likely created using Google Earth Engine (GEE) data, for the period of <b> September 1, 2015 </b>, to <b>September 29, 2015 </b>. Compared to the image depicting the peak flood period (August 10-20, 2015), this image likely shows a decrease in water coverage in Sukkur.However, the blue areas likely represent significant water presence compared to pre-flood conditions. Areas classified as green or red might still be recovering from floodwaters.
+                </p
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+                                                              @*  Shikarpur 2018 *@
+<section class="w-full py-12  bg-gray-100 mt-20 mb-20"> 
+ <div class="max-w-full mx-auto p-4" style="margin-bottom: 100px;">
+    <h2 class="text-3xl font-bold tracking-tight"> Analysis on Flood Imapct </h2>
+    <h3 class="text-2xl font-bold tracking-tight"> Floods Imapct in 2018 </h3>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="rounded-lg shadow-md p-1 flex flex-col items-center relative">
+            <img src="Pictures/ShFloodBefore18.PNG"
+                 alt="Flood"
+                 class="rounded-lg slideshow-img"
+                 width="800"
+                 height="800"
+                 style="object-fit: cover;" />
+        </div>
+        <div class="rounded-lg shadow-md p-4">
+            <h2 class="text-xl font-semibold mb-4">Before Floods</h2>
+            <p>
+                of land use, including agriculture, forestry, and urban development.
+
+            </p>
+
+        </div>
+    </div>
+</div>
+<div class="max-w-full mx-auto p-4" style="margin-bottom: 100px;">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="rounded-lg shadow-md p-1 flex flex-col items-center relative">
+            <img src="Pictures/ShFloodAfter18.PNG"
+                 alt="Flood"
+                 class="rounded-lg slideshow-img"
+                 width="800"
+                 height="800"
+                 style="object-fit: cover;" />
+        </div>
+        <div class="rounded-lg shadow-md p-4">
+            <h2 class="text-xl font-semibold mb-4">Before Floods</h2>
+            <p>
+                of land use, including agriculture, forestry, and urban development.
+
+            </p>
+
+        </div>
+    </div>
+</div>
+<div class="max-w-full mx-auto p-4" style="margin-bottom: 100px;">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="rounded-lg shadow-md p-1 flex flex-col items-center relative">
+            <img src="Pictures/ShFloodAreas18.PNG"
+                 alt="Flood"
+                 class="rounded-lg slideshow-img"
+                 width="800"
+                 height="800"
+                 style="object-fit: cover;" />
+        </div>
+        <div class="rounded-lg shadow-md p-4">
+            <h2 class="text-xl font-semibold mb-4">Flooded Areas</h2>
+            <p>
+                of land use, including agriculture, forestry, and urban development.
+
+            </p>
+
+        </div>
+    </div>
+</div>
+
+<div class="max-w-full mx-auto p-4" style="margin-bottom: 100px;">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="rounded-lg shadow-md p-1 flex flex-col items-center relative">
+            <img src="Pictures/Shpop18.PNG"
+                 alt="Flood"
+                 class="rounded-lg slideshow-img"
+                 width="800"
+                 height="800"
+                 style="object-fit: cover;" />
+        </div>
+        <div class="rounded-lg shadow-md p-4">
+             <h2 class="text-xl font-semibold mb-4">Exposed Population</h2>
+            <p>
+               of land use, including agriculture, forestry, and urban development.
+
+            </p>
+
+        </div>
+    </div>
+</div>
+
+<div class="max-w-full mx-auto p-4" style="margin-bottom: 100px;">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="rounded-lg shadow-md p-1 flex flex-col items-center relative">
+            <img src="Pictures/ShLc18.PNG"
+                 alt="Flood"
+                 class="rounded-lg slideshow-img"
+                 width="800"
+                 height="800"
+                 style="object-fit: cover;" />
+        </div>
+        <div class="rounded-lg shadow-md p-4">
+             <h2 class="text-xl font-semibold mb-4">Land Cover</h2>
+            <p>
+               of land use, including agriculture, forestry, and urban development.
+
+            </p>
+
+        </div>
+    </div>
+</div>
+
+<div class="max-w-full mx-auto p-4" style="margin-bottom: 100px;">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="rounded-lg shadow-md p-1 flex flex-col items-center relative">
+            <img src="Pictures/ShLcr18.PNG"
+                 alt="Flood"
+                 class="rounded-lg slideshow-img"
+                 width="800"
+                 height="800"
+                 style="object-fit: cover;" />
+        </div>
+        <div class="rounded-lg shadow-md p-4">
+             <h2 class="text-xl font-semibold mb-4">Crop Land</h2>
+            <p>
+               of land use, including agriculture, forestry, and urban development.
+
+            </p>
+
+        </div>
+    </div>
+</div>
+<div class="max-w-full mx-auto p-4" style="margin-bottom: 100px;">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="rounded-lg shadow-md p-1 flex flex-col items-center relative">
+            <img src="Pictures/ShAffected18.PNG"
+                 alt="Flood"
+                 class="rounded-lg slideshow-img"
+                 width="800"
+                 height="800"
+                 style="object-fit: cover;" />
+        </div>
+        <div class="rounded-lg shadow-md p-4">
+             <h2 class="text-xl font-semibold mb-4"> Affected CropLand </h2>
+            <p>
+               of land use, including agriculture, forestry, and urban development.
+
+            </p>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="max-w-full mx-auto p-4" style="margin-bottom: 100px;">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="rounded-lg shadow-md p-1 flex flex-col items-center relative">
+            <img src="Pictures/ShUrban18.PNG"
+                 alt="Flood"
+                 class="rounded-lg slideshow-img"
+                 width="800"
+                 height="800"
+                 style="object-fit: cover;" />
+        </div>
+        <div class="rounded-lg shadow-md p-4">
+             <h2 class="text-xl font-semibold mb-4">No Urban Affected </h2>
+            <p>
+               of land use, including agriculture, forestry, and urban development.
+
+            </p>
+
+        </div>
+    </div>
+</div>
+</section> 
+                                                         @*  Shikarpur 2021 *@
+ <section class="w-full py-12 ">
+ <div class="max-w-full mx-auto p-4" style="margin-bottom: 100px;">
+
+    <h3 class="text-2xl font-bold tracking-tight"> Floods Imapct in 2021 </h3>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="rounded-lg shadow-md p-1 flex flex-col items-center relative">
+            <img src="Pictures/ShFloodBefore21.PNG"
+                 alt="Flood"
+                 class="rounded-lg slideshow-img"
+                 width="800"
+                 height="800"
+                 style="object-fit: cover;" />
+        </div>
+        <div class="rounded-lg shadow-md p-4">
+            <h2 class="text-xl font-semibold mb-4">Before Floods</h2>
+            <p>
+                of land use, including agriculture, forestry, and urban development.
+
+            </p>
+
+        </div>
+    </div>
+</div>
+<div class="max-w-full mx-auto p-4" style="margin-bottom: 100px;">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="rounded-lg shadow-md p-1 flex flex-col items-center relative">
+            <img src="Pictures/ShFloodAfter21.PNG"
+                 alt="Flood"
+                 class="rounded-lg slideshow-img"
+                 width="800"
+                 height="800"
+                 style="object-fit: cover;" />
+        </div>
+        <div class="rounded-lg shadow-md p-4">
+            <h2 class="text-xl font-semibold mb-4">Before Floods</h2>
+            <p>
+                of land use, including agriculture, forestry, and urban development.
+
+            </p>
+
+        </div>
+    </div>
+</div>
+<div class="max-w-full mx-auto p-4" style="margin-bottom: 100px;">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="rounded-lg shadow-md p-1 flex flex-col items-center relative">
+            <img src="Pictures/ShFloodAreas21.PNG"
+                 alt="Flood"
+                 class="rounded-lg slideshow-img"
+                 width="800"
+                 height="800"
+                 style="object-fit: cover;" />
+        </div>
+        <div class="rounded-lg shadow-md p-4">
+            <h2 class="text-xl font-semibold mb-4">Flooded Areas</h2>
+            <p>
+                of land use, including agriculture, forestry, and urban development.
+
+            </p>
+
+        </div>
+    </div>
+</div>
+
+<div class="max-w-full mx-auto p-4" style="margin-bottom: 100px;">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="rounded-lg shadow-md p-1 flex flex-col items-center relative">
+            <img src="Pictures/Shpop21.PNG"
+                 alt="Flood"
+                 class="rounded-lg slideshow-img"
+                 width="800"
+                 height="800"
+                 style="object-fit: cover;" />
+        </div>
+        <div class="rounded-lg shadow-md p-4">
+             <h2 class="text-xl font-semibold mb-4">Exposed Population</h2>
+            <p>
+               of land use, including agriculture, forestry, and urban development.
+
+            </p>
+
+        </div>
+    </div>
+</div>
+
+<div class="max-w-full mx-auto p-4" style="margin-bottom: 100px;">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="rounded-lg shadow-md p-1 flex flex-col items-center relative">
+            <img src="Pictures/ShLc21.PNG"
+                 alt="Flood"
+                 class="rounded-lg slideshow-img"
+                 width="800"
+                 height="800"
+                 style="object-fit: cover;" />
+        </div>
+        <div class="rounded-lg shadow-md p-4">
+             <h2 class="text-xl font-semibold mb-4">Land Cover</h2>
+            <p>
+               of land use, including agriculture, forestry, and urban development.
+
+            </p>
+
+        </div>
+    </div>
+</div>
+
+<div class="max-w-full mx-auto p-4" style="margin-bottom: 100px;">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="rounded-lg shadow-md p-1 flex flex-col items-center relative">
+            <img src="Pictures/ShLcr21.PNG"
+                 alt="Flood"
+                 class="rounded-lg slideshow-img"
+                 width="800"
+                 height="800"
+                 style="object-fit: cover;" />
+        </div>
+        <div class="rounded-lg shadow-md p-4">
+             <h2 class="text-xl font-semibold mb-4">Crop Land</h2>
+            <p>
+               of land use, including agriculture, forestry, and urban development.
+
+            </p>
+
+        </div>
+    </div>
+</div>
+<div class="max-w-full mx-auto p-4" style="margin-bottom: 100px;">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="rounded-lg shadow-md p-1 flex flex-col items-center relative">
+            <img src="Pictures/ShAffected21.PNG"
+                 alt="Flood"
+                 class="rounded-lg slideshow-img"
+                 width="800"
+                 height="800"
+                 style="object-fit: cover;" />
+        </div>
+        <div class="rounded-lg shadow-md p-4">
+             <h2 class="text-xl font-semibold mb-4"> Affected CropLand </h2>
+            <p>
+               of land use, including agriculture, forestry, and urban development.
+
+            </p>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="max-w-full mx-auto p-4" style="margin-bottom: 100px;">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="rounded-lg shadow-md p-1 flex flex-col items-center relative">
+            <img src="Pictures/ShUrban21.PNG"
+                 alt="Flood"
+                 class="rounded-lg slideshow-img"
+                 width="800"
+                 height="800"
+                 style="object-fit: cover;" />
+        </div>
+        <div class="rounded-lg shadow-md p-4">
+             <h2 class="text-xl font-semibold mb-4">No Urban Affected </h2>
+            <p>
+               of land use, including agriculture, forestry, and urban development.
+
+            </p>
+
+        </div>
+    </div>
+</div>
+</section> 
+                                                         @*  Shikarpur 2022 *@
+  <section class="w-full py-12  bg-gray-100 mt-20 mb-20"> 
+ <div class="max-w-full mx-auto p-4" style="margin-bottom: 100px;">
+    
+    <h3 class="text-2xl font-bold tracking-tight"> Floods Imapct in 2022 </h3>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="rounded-lg shadow-md p-1 flex flex-col items-center relative">
+            <img src="Pictures/ShFloodBefore22.PNG"
+                 alt="Flood"
+                 class="rounded-lg slideshow-img"
+                 width="800"
+                 height="800"
+                 style="object-fit: cover;" />
+        </div>
+        <div class="rounded-lg shadow-md p-4">
+            <h2 class="text-xl font-semibold mb-4">Before Floods</h2>
+            <p>
+                of land use, including agriculture, forestry, and urban development.
+
+            </p>
+
+        </div>
+    </div>
+</div>
+<div class="max-w-full mx-auto p-4" style="margin-bottom: 100px;">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="rounded-lg shadow-md p-1 flex flex-col items-center relative">
+            <img src="Pictures/ShFloodAfter22.PNG"
+                 alt="Flood"
+                 class="rounded-lg slideshow-img"
+                 width="800"
+                 height="800"
+                 style="object-fit: cover;" />
+        </div>
+        <div class="rounded-lg shadow-md p-4">
+            <h2 class="text-xl font-semibold mb-4">Before Floods</h2>
+            <p>
+                of land use, including agriculture, forestry, and urban development.
+
+            </p>
+
+        </div>
+    </div>
+</div>
+<div class="max-w-full mx-auto p-4" style="margin-bottom: 100px;">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="rounded-lg shadow-md p-1 flex flex-col items-center relative">
+            <img src="Pictures/ShFloodAreas22.PNG"
+                 alt="Flood"
+                 class="rounded-lg slideshow-img"
+                 width="800"
+                 height="800"
+                 style="object-fit: cover;" />
+        </div>
+        <div class="rounded-lg shadow-md p-4">
+            <h2 class="text-xl font-semibold mb-4">Flooded Areas</h2>
+            <p>
+                of land use, including agriculture, forestry, and urban development.
+
+            </p>
+
+        </div>
+    </div>
+</div>
+
+<div class="max-w-full mx-auto p-4" style="margin-bottom: 100px;">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="rounded-lg shadow-md p-1 flex flex-col items-center relative">
+            <img src="Pictures/Shpop22.PNG"
+                 alt="Flood"
+                 class="rounded-lg slideshow-img"
+                 width="800"
+                 height="800"
+                 style="object-fit: cover;" />
+        </div>
+        <div class="rounded-lg shadow-md p-4">
+             <h2 class="text-xl font-semibold mb-4">Exposed Population</h2>
+            <p>
+               of land use, including agriculture, forestry, and urban development.
+
+            </p>
+
+        </div>
+    </div>
+</div>
+
+<div class="max-w-full mx-auto p-4" style="margin-bottom: 100px;">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="rounded-lg shadow-md p-1 flex flex-col items-center relative">
+            <img src="Pictures/ShLc22.PNG"
+                 alt="Flood"
+                 class="rounded-lg slideshow-img"
+                 width="800"
+                 height="800"
+                 style="object-fit: cover;" />
+        </div>
+        <div class="rounded-lg shadow-md p-4">
+             <h2 class="text-xl font-semibold mb-4">Land Cover</h2>
+            <p>
+               of land use, including agriculture, forestry, and urban development.
+
+            </p>
+
+        </div>
+    </div>
+</div>
+
+<div class="max-w-full mx-auto p-4" style="margin-bottom: 100px;">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="rounded-lg shadow-md p-1 flex flex-col items-center relative">
+            <img src="Pictures/ShLcr22.PNG"
+                 alt="Flood"
+                 class="rounded-lg slideshow-img"
+                 width="800"
+                 height="800"
+                 style="object-fit: cover;" />
+        </div>
+        <div class="rounded-lg shadow-md p-4">
+             <h2 class="text-xl font-semibold mb-4">Crop Land</h2>
+            <p>
+               of land use, including agriculture, forestry, and urban development.
+
+            </p>
+
+        </div>
+    </div>
+</div>
+<div class="max-w-full mx-auto p-4" style="margin-bottom: 100px;">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="rounded-lg shadow-md p-1 flex flex-col items-center relative">
+            <img src="Pictures/ShAffected22.PNG"
+                 alt="Flood"
+                 class="rounded-lg slideshow-img"
+                 width="800"
+                 height="800"
+                 style="object-fit: cover;" />
+        </div>
+        <div class="rounded-lg shadow-md p-4">
+             <h2 class="text-xl font-semibold mb-4"> Affected CropLand </h2>
+            <p>
+               of land use, including agriculture, forestry, and urban development.
+
+            </p>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="max-w-full mx-auto p-4" style="margin-bottom: 100px;">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="rounded-lg shadow-md p-1 flex flex-col items-center relative">
+            <img src="Pictures/ShUrban22.PNG"
+                 alt="Flood"
+                 class="rounded-lg slideshow-img"
+                 width="800"
+                 height="800"
+                 style="object-fit: cover;" />
+        </div>
+        <div class="rounded-lg shadow-md p-4">
+             <h2 class="text-xl font-semibold mb-4"> Urban Area</h2>
+            <p>
+               of land use, including agriculture, forestry, and urban development.
+
+            </p>
+
+        </div>
+    </div>
+</div>
+<div class="max-w-full mx-auto p-4" style="margin-bottom: 100px;">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="rounded-lg shadow-md p-1 flex flex-col items-center relative">
+            <img src="Pictures/Sh2Urban22.PNG"
+                 alt="Flood"
+                 class="rounded-lg slideshow-img"
+                 width="800"
+                 height="800"
+                 style="object-fit: cover;" />
+        </div>
+        <div class="rounded-lg shadow-md p-4">
+             <h2 class="text-xl font-semibold mb-4">  Affected Urban </h2>
+            <p>
+               of land use, including agriculture, forestry, and urban development.
+
+            </p>
+
+        </div>
+    </div>
+</div>
+</section> 
+
+ 
+@* 
+<div class="mt-20">
+    <!-- You can adjust the amount of margin as needed -->
+    @foreach (var item in info_Shikarpur_model)
+    {
+        <div class="max-w-full mx-auto p-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div class="rounded-lg shadow-md p-1 flex flex-col items-center relative">
+                    <img src="@item.imageURL5" />
+                </div>
+                <div class="rounded-lg shadow-md p-4">
+                    <h1 class="text-xl font-semibold mb-4">@item.heading</h1>
+                    <p>
+                        @item.info
+                    </p>
+
+                   
+
+                </div>
+                
+
+            </div>
+        </div>
+    }
+</div>
+
+
+
+@code {
+    private ShikarpurModel info_Shikarpur_Model { get; set; } = new ShikarpurModel();
+    private string? msg { get; set; }
+
+    private List<ShikarpurModel> info_Shikarpur_model = new List<ShikarpurModel>();
+
+
+    protected override void OnInitialized()
+    {
+        GetShikarpur();
+    }
+    private void GetShikarpur()
+    {
+        info_Shikarpur_model = ShikarpurDAL.GetShikarpurInfo();
+    }
+
+} *@

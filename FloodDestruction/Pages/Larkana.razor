@@ -1,0 +1,688 @@
+﻿@page "/larkana"
+@using ClassLibraryDAL
+@using ClassLibraryModel
+
+
+<div class="w-full py-12 lg:py-24">
+    <div class="container mx-auto px-4 max-w-screen-lg">
+        <div class="flex flex-col gap-4">
+            <h1 class="text-3xl font-bold tracking-tight">Floods in Larkana</h1>
+            <p class="text-black-500 dark:text-black-400">
+                As per reports, Larkana was one of the areas severely affected by the 2022 Pakistan floods. The Larkana and Sukkur divisions were particularly hard hit, with some towns being entirely inundated.
+                The Indus River overflowed, turning it into a massive lake, and Lake Manchar also reached overflowing levels.
+                Many villages were submerged, houses were damaged, and infrastructure was destroyed. Sindh province, which includes Larkana, reported nearly 800 deaths and over 8,000 injuries due to the floods.
+            </p>
+        </div>
+        <div class="grid gap-8 lg:gap-12 relative">
+            <div class="relative">
+                <img src="Pictures/Flood1.jpg"
+                     width="1400"
+                     height="933"
+                     alt="oops"
+                     class="mx-auto rounded-lg overflow-hidden current-image"
+                     style="width: 100%; height: auto; object-fit: cover;" />
+                
+            </div>
+        </div>
+       
+    </div>
+   
+</div> 
+
+
+<section class="w-full py-12  bg-gray-100 mt-20 mb-20">
+<div class="w-full py-12">
+    <div class="container flex flex-col gap-4 px-4 md:px-6">
+        <div class="flex flex-col gap-4">
+            <h1 class="text-3xl font-bold tracking-tight">Floods Impact in Larkana</h1>
+           <h2 class="text-3xl font-bold tracking-tight"> Maps Classifications </h2>
+           <h2 class="text-2xl font-bold "> Year 2022 </h2>
+           
+
+        </div>
+        <div class="grid gap-4 md:grid-cols-3">
+            <div class="flex flex-col gap-2">
+                <img src="Pictures/LB.png"
+                     alt="Image 1"
+                     width="600"
+                     height="400"
+                     class="aspect-image rounded-lg object-cover overflow-hidden" />
+                <p class="text-sm text-gray-500 dark:text-gray-400"></p>
+            </div>
+            <div class="flex flex-col gap-2">
+                <img src="Pictures/LD.png"
+                     alt="Image 2"
+                     width="600"
+                     height="400"
+                     class="aspect-image rounded-lg object-cover overflow-hidden" />
+                <p class="text-sm text-gray-500 dark:text-gray-400"></p>
+            </div>
+            <div class="flex flex-col gap-2">
+                <img src="Pictures/LA.png"
+                     alt="Image 3"
+                     width="600"
+                     height="400"
+                     class="aspect-image rounded-lg object-cover overflow-hidden" />
+                <p class="text-sm text-gray-500 dark:text-gray-400"></p>
+            </div>
+        </div>
+        <div class="grid gap-4 md:grid-cols-3">
+            <div class="flex flex-col gap-2">
+                <p> <b> BEFORE: </b This image depicts a land cover classification map, likely created from data acquired through Google Earth Engine (GEE), for the period of <b>January 1, 2022 </b> to<b> August 8, 2022 </b>. Urban areas are typically colored red, water bodies are colored blue, and vegetated areas are colored green. The limited blue areas in this image likely represent permanent water bodies like rivers or lakes. This map serves as a valuable reference point for understanding the pre-flood extent of water in the region. Areas currently classified as non-water (likely colored green or red) might be susceptible to flooding during heavy monsoon seasons or extreme weather events.</p>
+            </div>
+            <div class="flex flex-col gap-2">
+                <p>
+                    <b> DURING:  </b> This image depicts a land cover classification map, likely created using Google Earth Engine (GEE) data, for the period of <b> August 27, 2022</b>, to <b>September 10, 2022 </b>. The increased blue color compared to the previous image (dated pre-2022 flood) likely represents inundation caused by the floods.
+                </p>
+            </div>
+            <div class="flex flex-col gap-2">
+                <p>
+                    <b>AFTER: </b> This image likely depicts a land cover classification map, likely created using Google Earth Engine (GEE) data, for the period of <b> September 27, 2022 </b>, to <b> October 20, 2022 </b . Compared to the image depicting the peak flood period (August 10-20, 2022), this image likely shows a decrease in water coverage in Sukkur.However, the blue areas likely represent significant water presence compared to pre-flood conditions. Areas classified as green or red might still be recovering from floodwaters.
+                </P>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+                                                            @*  Larkana 2018 *@
+
+ <div class="max-w-full mx-auto p-4" style="margin-bottom: 100px;">
+    <h2 class="text-3xl font-bold tracking-tight"> Analysis on Flood Imapct </h2>
+    <h3 class="text-2xl font-bold tracking-tight"> Floods Imapct in 2018 </h3>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="rounded-lg shadow-md p-1 flex flex-col items-center relative">
+            <img src="Pictures/FLoodBEFORE18.png"
+                 alt="Flood"
+                 class="rounded-lg slideshow-img"
+                 width="800"
+                 height="800"
+                 style="object-fit: cover;" />
+        </div>
+        <div class="rounded-lg shadow-md p-4">
+             <h2 class="text-xl font-semibold mb-4">Before Floods</h2>
+            <p>
+               of land use, including agriculture, forestry, and urban development.
+
+            </p>
+
+        </div>
+    </div>
+</div>
+<div class="max-w-full mx-auto p-4" style="margin-bottom: 100px;">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="rounded-lg shadow-md p-1 flex flex-col items-center relative">
+            <img src="Pictures/FloodAfter18.PNG"
+                 alt="Flood"
+                 class="rounded-lg slideshow-img"
+                 width="800"
+                 height="800"
+                 style="object-fit: cover;" />
+        </div>
+        <div class="rounded-lg shadow-md p-4">
+             <h2 class="text-xl font-semibold mb-4"> After Floods </h2>
+            <p>
+              of land use, including agriculture, forestry, and urban development.
+
+            </p>
+
+        </div>
+    </div>
+</div>
+<div class="max-w-full mx-auto p-4" style="margin-bottom: 100px;">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="rounded-lg shadow-md p-1 flex flex-col items-center relative">
+            <img src="Pictures/FloodAreas18.PNG"
+                 alt="Flood"
+                 class="rounded-lg slideshow-img"
+                 width="800"
+                 height="800"
+                 style="object-fit: cover;" />
+        </div>
+        <div class="rounded-lg shadow-md p-4">
+            <h2 class="text-xl font-semibold mb-4">Flooded Areas</h2>
+            <p>
+                of land use, including agriculture, forestry, and urban development.
+
+            </p>
+
+        </div>
+    </div>
+</div>
+
+<div class="max-w-full mx-auto p-4" style="margin-bottom: 100px;">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="rounded-lg shadow-md p-1 flex flex-col items-center relative">
+            <img src="Pictures/pop18.png"
+                 alt="Flood"
+                 class="rounded-lg slideshow-img"
+                 width="800"
+                 height="800"
+                 style="object-fit: cover;" />
+        </div>
+        <div class="rounded-lg shadow-md p-4">
+             <h2 class="text-xl font-semibold mb-4">Exposed Population</h2>
+            <p>
+               of land use, including agriculture, forestry, and urban development.
+
+            </p>
+
+        </div>
+    </div>
+</div>
+
+<div class="max-w-full mx-auto p-4" style="margin-bottom: 100px;">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="rounded-lg shadow-md p-1 flex flex-col items-center relative">
+            <img src="Pictures/Lc18.PNG"
+                 alt="Flood"
+                 class="rounded-lg slideshow-img"
+                 width="800"
+                 height="800"
+                 style="object-fit: cover;" />
+        </div>
+        <div class="rounded-lg shadow-md p-4">
+             <h2 class="text-xl font-semibold mb-4">Land Cover</h2>
+            <p>
+               of land use, including agriculture, forestry, and urban development.
+
+            </p>
+
+        </div>
+    </div>
+</div>
+
+<div class="max-w-full mx-auto p-4" style="margin-bottom: 100px;">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="rounded-lg shadow-md p-1 flex flex-col items-center relative">
+            <img src="Pictures/Lcrop18.png"
+                 alt="Flood"
+                 class="rounded-lg slideshow-img"
+                 width="800"
+                 height="800"
+                 style="object-fit: cover;" />
+        </div>
+        <div class="rounded-lg shadow-md p-4">
+             <h2 class="text-xl font-semibold mb-4">Crop Land</h2>
+            <p>
+               of land use, including agriculture, forestry, and urban development.
+
+            </p>
+
+        </div>
+    </div>
+</div>
+
+<div class="max-w-full mx-auto p-4" style="margin-bottom: 100px;">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="rounded-lg shadow-md p-1 flex flex-col items-center relative">
+            <img src="Pictures/Affected18.PNG"
+                 alt="Flood"
+                 class="rounded-lg slideshow-img"
+                 width="800"
+                 height="800"
+                 style="object-fit: cover;" />
+        </div>
+        <div class="rounded-lg shadow-md p-4">
+             <h2 class="text-xl font-semibold mb-4"> Affected CropLand </h2>
+            <p>
+               of land use, including agriculture, forestry, and urban development.
+
+            </p>
+
+        </div>
+    </div>
+</div>
+             
+
+<div class="max-w-full mx-auto p-4" style="margin-bottom: 100px;">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="rounded-lg shadow-md p-1 flex flex-col items-center relative">
+            <img src="Pictures/Urban218.png"
+                 alt="Flood"
+                 class="rounded-lg slideshow-img"
+                 width="800"
+                 height="800"
+                 style="object-fit: cover;" />
+        </div>
+        <div class="rounded-lg shadow-md p-4">
+             <h2 class="text-xl font-semibold mb-4">No Urban Affected </h2>
+            <p>
+               of land use, including agriculture, forestry, and urban development.
+
+            </p>
+
+        </div>
+    </div>
+</div>
+                                                         @*  LArkana 2021 *@
+ <section class="w-full py-12  bg-gray-100 mt-20 mb-20">
+ <div class="max-w-full mx-auto p-4" style="margin-bottom: 100px;">
+   
+    <h3 class="text-2xl font-bold tracking-tight"> Floods Imapct in 2021 </h3>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="rounded-lg shadow-md p-1 flex flex-col items-center relative">
+            <img src="Pictures/FLoodBefore21.png"
+                 alt="Flood"
+                 class="rounded-lg slideshow-img"
+                 width="800"
+                 height="800"
+                 style="object-fit: cover;" />
+        </div>
+        <div class="rounded-lg shadow-md p-4">
+              <h2 class="text-xl font-semibold mb-4">Before Floods</h2>
+            <p>
+              
+               of land use, including agriculture, forestry, and urban development.
+
+            </p>
+
+        </div>
+    </div>
+</div>
+<div class="max-w-full mx-auto p-4" style="margin-bottom: 100px;">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="rounded-lg shadow-md p-1 flex flex-col items-center relative">
+            <img src="Pictures/FloodAfter21.PNG"
+                 alt="Flood"
+                 class="rounded-lg slideshow-img"
+                 width="800"
+                 height="800"
+                 style="object-fit: cover;" />
+        </div>
+        <div class="rounded-lg shadow-md p-4">
+             <h2 class="text-xl font-semibold mb-4">After Floods</h2>
+            <p>
+                of land use, including agriculture, forestry, and urban development.
+
+            </p>
+
+        </div>
+    </div>
+</div>
+<div class="max-w-full mx-auto p-4" style="margin-bottom: 100px;">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="rounded-lg shadow-md p-1 flex flex-col items-center relative">
+            <img src="Pictures/FloodAreas21.PNG"
+                 alt="Flood"
+                 class="rounded-lg slideshow-img"
+                 width="800"
+                 height="800"
+                 style="object-fit: cover;" />
+        </div>
+        <div class="rounded-lg shadow-md p-4">
+             <h2 class="text-xl font-semibold mb-4"> Flooded Areas</h2>
+            <p>
+                of land use, including agriculture, forestry, and urban development.
+
+            </p>
+
+        </div>
+    </div>
+</div>
+
+<div class="max-w-full mx-auto p-4" style="margin-bottom: 100px;">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="rounded-lg shadow-md p-1 flex flex-col items-center relative">
+            <img src="Pictures/pop21.PNG"
+                 alt="Flood"
+                 class="rounded-lg slideshow-img"
+                 width="800"
+                 height="800"
+                 style="object-fit: cover;" />
+        </div>
+        <div class="rounded-lg shadow-md p-4">
+             <h2 class="text-xl font-semibold mb-4">Exposed Population</h2>
+            <p>
+               of land use, including agriculture, forestry, and urban development.
+
+            </p>
+
+        </div>
+    </div>
+</div>
+
+<div class="max-w-full mx-auto p-4" style="margin-bottom: 100px;">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="rounded-lg shadow-md p-1 flex flex-col items-center relative">
+            <img src="Pictures/lc21.png"
+                 alt="Flood"
+                 class="rounded-lg slideshow-img"
+                 width="800"
+                 height="800"
+                 style="object-fit: cover;" />
+        </div>
+        <div class="rounded-lg shadow-md p-4">
+             <h2 class="text-xl font-semibold mb-4">Land Cover</h2>
+            <p>
+               of land use, including agriculture, forestry, and urban development.
+
+            </p>
+
+        </div>
+    </div>
+</div>
+
+<div class="max-w-full mx-auto p-4" style="margin-bottom: 100px;">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="rounded-lg shadow-md p-1 flex flex-col items-center relative">
+            <img src="Pictures/Lcrop21.PNG"
+                 alt="Flood"
+                 class="rounded-lg slideshow-img"
+                 width="800"
+                 height="800"
+                 style="object-fit: cover;" />
+        </div>
+        <div class="rounded-lg shadow-md p-4">
+             <h2 class="text-xl font-semibold mb-4">Crop Land</h2>
+            <p>
+               of land use, including agriculture, forestry, and urban development.
+
+            </p>
+
+        </div>
+    </div>
+</div>
+<div class="max-w-full mx-auto p-4" style="margin-bottom: 100px;">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="rounded-lg shadow-md p-1 flex flex-col items-center relative">
+            <img src="Pictures/Affected21.PNG"
+                 alt="Flood"
+                 class="rounded-lg slideshow-img"
+                 width="800"
+                 height="800"
+                 style="object-fit: cover;" />
+        </div>
+        <div class="rounded-lg shadow-md p-4">
+             <h2 class="text-xl font-semibold mb-4"> Affected CropLand </h2>
+            <p>
+               of land use, including agriculture, forestry, and urban development.
+
+            </p>
+
+        </div>
+    </div>
+</div>
+
+<div class="max-w-full mx-auto p-4" style="margin-bottom: 100px;">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="rounded-lg shadow-md p-1 flex flex-col items-center relative">
+            <img src="Pictures/Urban21.png"
+                 alt="Flood"
+                 class="rounded-lg slideshow-img"
+                 width="800"
+                 height="800"
+                 style="object-fit: cover;" />
+        </div>
+        <div class="rounded-lg shadow-md p-4">
+             <h2 class="text-xl font-semibold mb-4">No Urban Affected </h2>
+            <p>
+               of land use, including agriculture, forestry, and urban development.
+
+            </p>
+
+        </div>
+    </div>
+</div>
+</section> 
+                                                         @*  LArkana 2022 *@
+
+
+ <div class="max-w-full mx-auto p-4" style="margin-bottom: 100px;">
+    
+    <h3 class="text-2xl font-bold tracking-tight"> Floods Imapct in 2022 </h3>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="rounded-lg shadow-md p-1 flex flex-col items-center relative">
+            <img src="Pictures/FLoodBEFORE22.png"
+                 alt="Flood"
+                 class="rounded-lg slideshow-img"
+                 width="800"
+                 height="800"
+                 style="object-fit: cover;" />
+        </div>
+        <div class="rounded-lg shadow-md p-4">
+             <h2 class="text-xl font-semibold mb-4">Before Floods</h2>
+            <p>
+               of land use, including agriculture, forestry, and urban development.
+
+            </p>
+
+        </div>
+    </div>
+</div>
+<div class="max-w-full mx-auto p-4" style="margin-bottom: 100px;">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="rounded-lg shadow-md p-1 flex flex-col items-center relative">
+            <img src="Pictures/FloodAfter22.PNG"
+                 alt="Flood"
+                 class="rounded-lg slideshow-img"
+                 width="800"
+                 height="800"
+                 style="object-fit: cover;" />
+        </div>
+        <div class="rounded-lg shadow-md p-4">
+             <h2 class="text-xl font-semibold mb-4"> After Floods </h2>
+            <p>
+                of land use, including agriculture, forestry, and urban development.
+
+            </p>
+
+        </div>
+    </div>
+</div>
+<div class="max-w-full mx-auto p-4" style="margin-bottom: 100px;">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="rounded-lg shadow-md p-1 flex flex-col items-center relative">
+            <img src="Pictures/FloodAreas22.PNG"
+                 alt="Flood"
+                 class="rounded-lg slideshow-img"
+                 width="800"
+                 height="800"
+                 style="object-fit: cover;" />
+        </div>
+        <div class="rounded-lg shadow-md p-4">
+             <h2 class="text-xl font-semibold mb-4">Flooded Areas</h2>
+            <p>
+                of land use, including agriculture, forestry, and urban development.
+
+            </p>
+
+        </div>
+    </div>
+</div>
+
+<div class="max-w-full mx-auto p-4" style="margin-bottom: 100px;">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="rounded-lg shadow-md p-1 flex flex-col items-center relative">
+            <img src="Pictures/pop22.png"
+                 alt="Flood"
+                 class="rounded-lg slideshow-img"
+                 width="800"
+                 height="800"
+                 style="object-fit: cover;" />
+        </div>
+        <div class="rounded-lg shadow-md p-4">
+             <h2 class="text-xl font-semibold mb-4">Exposed Population</h2>
+            <p>
+               of land use, including agriculture, forestry, and urban development.
+
+            </p>
+
+        </div>
+    </div>
+</div>
+
+<div class="max-w-full mx-auto p-4" style="margin-bottom: 100px;">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="rounded-lg shadow-md p-1 flex flex-col items-center relative">
+            <img src="Pictures/Lc22.PNG"
+                 alt="Flood"
+                 class="rounded-lg slideshow-img"
+                 width="800"
+                 height="800"
+                 style="object-fit: cover;" />
+        </div>
+        <div class="rounded-lg shadow-md p-4">
+             <h2 class="text-xl font-semibold mb-4">Land Cover</h2>
+            <p>
+               of land use, including agriculture, forestry, and urban development.
+
+            </p>
+
+        </div>
+    </div>
+</div>
+
+<div class="max-w-full mx-auto p-4" style="margin-bottom: 100px;">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="rounded-lg shadow-md p-1 flex flex-col items-center relative">
+            <img src="Pictures/Lcrop22.png"
+                 alt="Flood"
+                 class="rounded-lg slideshow-img"
+                 width="800"
+                 height="800"
+                 style="object-fit: cover;" />
+        </div>
+        <div class="rounded-lg shadow-md p-4">
+             <h2 class="text-xl font-semibold mb-4">Crop Land</h2>
+            <p>
+               of land use, including agriculture, forestry, and urban development.
+
+            </p>
+
+        </div>
+    </div>
+</div>
+<div class="max-w-full mx-auto p-4" style="margin-bottom: 100px;">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="rounded-lg shadow-md p-1 flex flex-col items-center relative">
+            <img src="Pictures/affected22.PNG"
+                 alt="Flood"
+                 class="rounded-lg slideshow-img"
+                 width="800"
+                 height="800"
+                 style="object-fit: cover;" />
+        </div>
+        <div class="rounded-lg shadow-md p-4">
+             <h2 class="text-xl font-semibold mb-4"> Affected CropLand </h2>
+            <p>
+               of land use, including agriculture, forestry, and urban development.
+
+            </p>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="max-w-full mx-auto p-4" style="margin-bottom: 100px;">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="rounded-lg shadow-md p-1 flex flex-col items-center relative">
+            <img src="Pictures/Urban22.png"
+                 alt="Flood"
+                 class="rounded-lg slideshow-img"
+                 width="800"
+                 height="800"
+                 style="object-fit: cover;" />
+        </div>
+        <div class="rounded-lg shadow-md p-4">
+             <h2 class="text-xl font-semibold mb-4">No Urban Affected </h2>
+            <p>
+               of land use, including agriculture, forestry, and urban development.
+
+            </p>
+
+        </div>
+    </div>
+</div>  
+
+<!-- FROM DB-->
+
+ <div class="mt-20">
+    <!-- You can adjust the amount of margin as needed -->
+    @foreach (var item in info_larkana_model)
+    {
+        <div class="max-w-full mx-auto p-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div class="rounded-lg shadow-md p-1 flex flex-col items-center relative">
+                    <img src="@item.imageURL3" />
+                </div>
+                <div class="rounded-lg shadow-md p-4">
+                    <h1 class="text-xl font-semibold mb-4">@item.heading</h1>
+                    <p>
+                        @item.info
+                    </p>
+
+                   
+
+                </div>
+                
+
+            </div>
+        </div>
+    }
+</div>
+
+
+
+@code {
+    private LarkanaModel info_lar_Model { get; set; } = new LarkanaModel();
+    private string? msg { get; set; }
+
+    private List<LarkanaModel> info_larkana_model = new List<LarkanaModel>();
+
+
+    protected override void OnInitialized()
+    {
+        GetLar();
+    }
+    private void GetLar()
+    {
+        info_larkana_model = LarkanaDAL.GetLarkanaInfo();
+    }
+
+}
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

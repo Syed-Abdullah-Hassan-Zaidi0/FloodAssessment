@@ -1,0 +1,90 @@
+﻿@page "/map"
+@using ClassLibraryDAL
+@using ClassLibraryModel
+
+<PageTitle>Map</PageTitle>
+
+@* <div class="max-w-full mx-auto p-4" style="margin-bottom: 100px;">
+
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="rounded-lg shadow-md p-1 flex flex-col items-center relative">
+            <img src="Pictures/map_2.svg"
+                 alt="Flood"
+                 class="rounded-lg slideshow-img"
+                 width="800"
+                 height="800"
+                 style="object-fit: cover;" />
+        </div>
+        <div class="rounded-lg shadow-md p-4">
+            <h2 class="text-xl font-semibold mb-4">Pakistan</h2>
+            <p>
+                Pakistan is a country with a diverse landscape that spans over approximately 881,913 square kilometers, making it the 33rd largest country in the world. Its terrain ranges from mountains in the north, plains in the east, and desert areas in the south. The country's land area is characterized by significant variations in topography and climate, which are conducive to various types of land use, including agriculture, forestry, and urban development.
+
+            </p>
+
+            <p>
+
+                Water resources in Pakistan are primarily derived from the Indus River system, which supports the country's main agricultural activities. The total area equipped for irrigation spans around 202,000 square kilometers, highlighting the importance of agriculture in Pakistan's economy. The country's agriculture is crucial, providing the livelihood for a large portion of the population and contributing significantly to the GDP.
+
+            </p>
+
+            <p>
+                Regarding infrastructure, Pakistan has an extensive road network covering approximately 263,000 kilometers, which includes national highways, motorways, and rural and urban roads. This network facilitates not only the movement of people but also the transport of goods across the country, playing a vital role in the national economy. The development and maintenance of this road network are vital for ensuring economic growth and connectivity within the country and with neighboring regions.
+            </p>
+        </div>
+    </div>
+</div>
+ *@
+
+
+
+
+<div class="mt-20">
+    <!-- You can adjust the amount of margin as needed -->
+    @foreach (var item in info_pak_model)
+    {
+        <div class="max-w-full mx-auto p-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div class="rounded-lg shadow-md p-1 flex flex-col items-center relative">
+                    <img src="@item.imageURL6" />
+                </div>
+                <div class="rounded-lg shadow-md p-4">
+                    <h1 class="text-xl font-semibold mb-4">@item.heading</h1>
+                    <p>
+                        @item.info
+                    </p>
+
+                    <div class="mt-4 flex flex-col sm:flex-row gap-2 ">
+                        
+
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    }
+</div>
+
+
+
+@code {
+    private PakFloodInfoModel infoPakModel { get; set; } = new PakFloodInfoModel();
+    private string? msg { get; set; }
+
+    private List<PakFloodInfoModel> info_pak_model = new List<PakFloodInfoModel>();
+
+
+    protected override void OnInitialized()
+    {
+        GetPak();
+    }
+    private void GetPak()
+    {
+        info_pak_model = PakFloodInfoDAL.GetPakFloodInfo();
+    }
+
+}

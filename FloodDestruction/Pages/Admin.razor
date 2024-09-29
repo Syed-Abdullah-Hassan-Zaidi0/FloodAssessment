@@ -1,0 +1,746 @@
+﻿@* @page "/Admin"
+@using Amazon.S3
+@using Amazon.S3.Model
+@using Amazon.S3.Transfer 
+@using ClassLibraryDAL
+@using ClassLibraryModel
+@using System.Data.SqlClient
+@using System.Data
+
+ @inherits LayoutComponentBase
+
+<div>
+    @if (!isLoggedIn)
+    {
+        //SIGN UP
+
+        <div class="flex items-center justify-center min-h-screen bg-lightblue">
+            <div class="w-full max-w-md p-8 bg-white rounded-lg shadow-md">
+                <div class="mb-8 text-center">
+                    <h1 class="text-4xl font-bold mb-3">Sign in</h1>
+                    <p class="text-sm text-gray-600">Login to your Admin Panel</p>
+                    @if (!string.IsNullOrEmpty(errorMessage))
+                    {
+                        <p class="text-red-500 mt-2">@errorMessage</p>
+                    }
+                </div>
+                <form novalidate="" action="" class="space-y-6">
+                    <div>
+                        <label for="user" class="block mb-2 text-sm font-semibold text-gray-700">Username</label>
+                        <input type="text" name="email" id="user" @bind="usernameInput" class="w-full p-3 border rounded-lg bg-gray-50 border-gray-300 focus:ring focus:ring-blue-200 focus:outline-none" />
+                    </div>
+                    <div>
+                        <label for="password" class="block mb-2 text-sm font-semibold text-gray-700">Password</label>
+                        <input type="password" name="password" id="password" @bind="passwordInput" placeholder="*****" class="w-full p-3 border rounded-lg bg-gray-50 border-gray-300 focus:ring focus:ring-blue-200 focus:outline-none" />
+                    </div>
+                    <button type="button" @onclick="HandleLogin" class="w-full py-3 bg-blue-500 text-white rounded-lg font-semibold hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-200">Login</button>
+                </form>
+            </div>
+        </div>
+    }
+    else
+    { 
+        //Flood Info
+        <div class="p-4 max-w-md mx-auto rounded-lg shadow-md mt-7 bg-blue-100">
+            <EditForm Model="infoModel" OnSubmit="SaveInformation">
+                <h2 class="text-2xl font-semibold mb-4">Enter the Flood  Info</h2>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700" for="headingName">Heading Name:</label>
+                        <input type="text" id="headingName" @bind-value="infoModel.heading" required class="mt-1 block w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700" for="para">Para:</label>
+                        <textarea id="para" @bind="infoModel.info" required class="mt-1 block w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700" for="image">Image:</label>
+                        <InputFile OnChange="UploadImage" class="mt-1 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none focus:ring-blue-500 focus:border-blue-500" />
+                    </div>
+                    <button type="submit" class="w-full bg-blue-600 text-white font-semibold py-2 rounded-md shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">SAVE</button>
+                </div>
+            </EditForm>
+            <h4 class="mt-4 text-red-600">@msg</h4>
+        </div>
+
+        <div class="overflow-x-auto mt-20">
+            <table class="min-w-full divide-y divide-gray-300">
+                <thead class="bg-gray-100">
+                    <tr>
+                        <th class="py-2 px-4 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">Title</th>
+                        <th class="py-2 px-4 text-left text-sm font-medium text-gray-500 uppercase tracking-wider flex-grow">Description</th>
+                        <th class="py-2 px-4 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">ImageURL</th>
+                        <th class="py-2 px-4 text-sm font-medium text-gray-500 uppercase tracking-wider"></th>
+                        <th class="py-2 px-4 text-sm font-medium text-gray-500 uppercase tracking-wider">More</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                    @foreach (var item in info_model)
+                    {
+                        <tr>
+                                                        <td class="py-2 px-4 text-sm text-gray-700">@item.heading</td>
+                            <td class="py-2 px-4 text-sm text-gray-700 flex-grow">@item.info</td>
+                            <td class="py-2 px-4 text-sm text-gray-700 truncate max-w-xs"><a href="@item.imageURL">See Image</a></td>
+                            <td class="py-2 px-4 text-right">
+                                <button class="bg-red-600 text-white text-sm font-medium px-2 py-1 rounded-md shadow hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2" @onclick="(()=>DeleteInformation(item.pid))">
+                                    DELETE
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+                                               ///LARKANA
+
+        <div class="p-4 max-w-md mx-auto rounded-lg shadow-md mt-7 bg-blue-100">
+            <EditForm Model="infoLarkanaModel" OnSubmit="SaveLarkanaInformation">
+                <h2 class="text-2xl font-semibold mb-4">Enter the Larkana Info</h2>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700" for="headingName">Heading Name:</label>
+                        <input type="text" id="headingName" @bind-value="infoLarkanaModel.heading" required class="mt-1 block w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700" for="para">Para:</label>
+                        <textarea id="para" @bind="infoLarkanaModel.info" required class="mt-1 block w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700" for="image">Image:</label>
+                        <InputFile OnChange="UploadLarkanaImage" class="mt-1 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none focus:ring-blue-500 focus:border-blue-500" />
+                    </div>
+                    <button type="submit" class="w-full bg-blue-600 text-white font-semibold py-2 rounded-md shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">SAVE</button>
+                </div>
+            </EditForm>
+            <h4 class="mt-4 text-red-600">@Larkanamsg</h4>
+        </div>
+
+        <div class="overflow-x-auto mt-20">
+            <table class="min-w-full divide-y divide-gray-300">
+                <thead class="bg-gray-100">
+                    <tr>
+                        <th class="py-2 px-4 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">Title</th>
+                        <th class="py-2 px-4 text-left text-sm font-medium text-gray-500 uppercase tracking-wider flex-grow">Description</th>
+                        <th class="py-2 px-4 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">ImageURL</th>
+                        <th class="py-2 px-4 text-sm font-medium text-gray-500 uppercase tracking-wider"></th>
+                        <th class="py-2 px-4 text-sm font-medium text-gray-500 uppercase tracking-wider">More</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                    @foreach (var item in info_larkana_model)
+                    {
+                        <tr>
+                            <td class="py-2 px-4 text-sm text-gray-700">@item.heading</td>
+                            <td class="py-2 px-4 text-sm text-gray-700 flex-grow">@item.info</td>
+                            <td class="py-2 px-4 text-sm text-gray-700 truncate max-w-xs"><a href="@item.imageURL3">See Image</a></td>
+                            <td class="py-2 px-4 text-right">
+                                <button class="bg-red-600 text-white text-sm font-medium px-2 py-1 rounded-md shadow hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2" @onclick="(()=>DeleteLarkanaInfo(item.pid))">
+                                    DELETE
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+
+
+                                                             //SUkkur
+
+        <div class="p-4 max-w-md mx-auto rounded-lg shadow-md mt-7 bg-blue-100">
+            <EditForm Model="infoSukkurModel" OnSubmit="SaveSukkurInformation">
+                <h2 class="text-2xl font-semibold mb-4">Enter the Sukkur Info</h2>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700" for="headingName">Heading Name:</label>
+                        <input type="text" id="headingName" @bind-value="infoSukkurModel.heading" required class="mt-1 block w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700" for="para">Para:</label>
+                        <textarea id="para" @bind="infoSukkurModel.info" required class="mt-1 block w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700" for="image">Image:</label>
+                        <InputFile OnChange="UploadSukkurImage" class="mt-1 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none focus:ring-blue-500 focus:border-blue-500" />
+                    </div>
+                    <button type="submit" class="w-full bg-blue-600 text-white font-semibold py-2 rounded-md shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">SAVE</button>
+                </div>
+            </EditForm>
+            <h4 class="mt-4 text-red-600">@Sukkurmsg</h4>
+        </div>
+
+        <div class="overflow-x-auto mt-20">
+            <table class="min-w-full divide-y divide-gray-300">
+                <thead class="bg-gray-100">
+                    <tr>
+                        <th class="py-2 px-4 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">Title</th>
+                        <th class="py-2 px-4 text-left text-sm font-medium text-gray-500 uppercase tracking-wider flex-grow">Description</th>
+                        <th class="py-2 px-4 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">ImageURL</th>
+                        <th class="py-2 px-4 text-sm font-medium text-gray-500 uppercase tracking-wider"></th>
+                        <th class="py-2 px-4 text-sm font-medium text-gray-500 uppercase tracking-wider">More</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                    @foreach (var item in info_Sukkur_model)
+                    {
+                        <tr>
+                            <td class="py-2 px-4 text-sm text-gray-700">@item.heading</td>
+                            <td class="py-2 px-4 text-sm text-gray-700 flex-grow">@item.info</td>
+                            <td class="py-2 px-4 text-sm text-gray-700 truncate max-w-xs"><a href="@item.imageURL4">See Image</a></td>
+                            <td class="py-2 px-4 text-right">
+                                <button class="bg-red-600 text-white text-sm font-medium px-2 py-1 rounded-md shadow hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2" @onclick="(()=>DeleteSukkurInfo(item.pid))">
+                                    DELETE
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+
+
+
+
+                                           //Shikarpur
+        <div class="p-4 max-w-md mx-auto rounded-lg shadow-md mt-7 bg-blue-100">
+            <EditForm Model="infoShikarpurModel" OnSubmit="SaveShikarpurInformation">
+                <h2 class="text-2xl font-semibold mb-4">Enter the Shikarpur Info</h2>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700" for="headingName">Heading Name:</label>
+                        <input type="text" id="headingName" @bind-value="infoShikarpurModel.heading" required class="mt-1 block w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700" for="para">Para:</label>
+                        <textarea id="para" @bind="infoShikarpurModel.info" required class="mt-1 block w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700" for="image">Image:</label>
+                        <InputFile OnChange="UploadShikarpurImage" class="mt-1 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none focus:ring-blue-500 focus:border-blue-500" />
+                    </div>
+                    <button type="submit" class="w-full bg-blue-600 text-white font-semibold py-2 rounded-md shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">SAVE</button>
+                </div>
+            </EditForm>
+            <h4 class="mt-4 text-red-600">@Shikarpurmsg</h4>
+        </div>
+
+        <div class="overflow-x-auto mt-20">
+
+            <table class="min-w-full divide-y divide-gray-300">
+                <thead class="bg-gray-100">
+                    <tr>
+                        <th class="py-2 px-4 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">Title</th>
+                        <th class="py-2 px-4 text-left text-sm font-medium text-gray-500 uppercase tracking-wider flex-grow">Description</th>
+                        <th class="py-2 px-4 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">ImageURL</th>
+                        <th class="py-2 px-4 text-sm font-medium text-gray-500 uppercase tracking-wider"></th>
+                        <th class="py-2 px-4 text-sm font-medium text-gray-500 uppercase tracking-wider">More</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                    @foreach (var item in info_Shikarpur_model)
+                    {
+                        <tr>
+                            <td class="py-2 px-4 text-sm text-gray-700">@item.heading</td>
+                            <td class="py-2 px-4 text-sm text-gray-700 flex-grow">@item.info</td>
+                            <td class="py-2 px-4 text-sm text-gray-700 truncate max-w-xs"><a href="@item.imageURL5">See Image</a></td>
+                            <td class="py-2 px-4 text-right">
+                                <button class="bg-red-600 text-white text-sm font-medium px-2 py-1 rounded-md shadow hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2" @onclick="(()=>DeleteShikarpurInfo(item.pid))">
+                                    DELETE
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+
+
+
+                                                  //Pak FLood Info
+        <div class="p-4 max-w-md mx-auto rounded-lg shadow-md mt-7 bg-blue-100">
+            <EditForm Model="infoPakModel" OnSubmit="SavePakFloodInformation">
+                <h2 class="text-2xl font-semibold mb-4">Enter the Pakistan  Info</h2>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700" for="headingName">Heading Name:</label>
+                        <input type="text" id="headingName" @bind-value="infoPakModel.heading" required class="mt-1 block w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700" for="para">Para:</label>
+                        <textarea id="para" @bind="infoPakModel.info" required class="mt-1 block w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700" for="image">Image:</label>
+                        <InputFile OnChange="UploadPakFloodImage" class="mt-1 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none focus:ring-blue-500 focus:border-blue-500" />
+                    </div>
+                    <button type="submit" class="w-full bg-blue-600 text-white font-semibold py-2 rounded-md shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">SAVE</button>
+                </div>
+            </EditForm>
+            <h4 class="mt-4 text-red-600">@Pakmsg</h4>
+        </div>
+
+        <div class="overflow-x-auto mt-20">
+
+            <table class="min-w-full divide-y divide-gray-300">
+                <thead class="bg-gray-100">
+                    <tr>
+                        <th class="py-2 px-4 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">Title</th>
+                        <th class="py-2 px-4 text-left text-sm font-medium text-gray-500 uppercase tracking-wider flex-grow">Description</th>
+                        <th class="py-2 px-4 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">ImageURL</th>
+                        <th class="py-2 px-4 text-sm font-medium text-gray-500 uppercase tracking-wider"></th>
+                        <th class="py-2 px-4 text-sm font-medium text-gray-500 uppercase tracking-wider">More</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                    @foreach (var item in info_pak_model)
+                    {
+                        <tr>
+                            <td class="py-2 px-4 text-sm text-gray-700">@item.heading</td>
+                            <td class="py-2 px-4 text-sm text-gray-700 flex-grow">@item.info</td>
+                            <td class="py-2 px-4 text-sm text-gray-700 truncate max-w-xs"><a href="@item.imageURL6">See Image</a></td>
+                            <td class="py-2 px-4 text-right">
+                                <button class="bg-red-600 text-white text-sm font-medium px-2 py-1 rounded-md shadow hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2" @onclick="(()=>DeletePakFloodInfo(item.pid))">
+                                    DELETE
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+
+
+
+
+       
+    }
+</div>
+
+
+@code {
+    private HomeFloodInfoModel infoModel { get; set; } = new HomeFloodInfoModel();
+    private LarkanaModel infoLarkanaModel { get; set; } = new LarkanaModel();
+    private SukkurModel infoSukkurModel { get; set; } = new SukkurModel();
+    private ShikarpurModel infoShikarpurModel { get; set; } = new ShikarpurModel();
+    private PakFloodInfoModel infoPakModel { get; set; } = new PakFloodInfoModel();
+
+
+    private static string? msg { get; set; }
+    private static string? imgurl;
+    private static string? Larkanamsg { get; set; }
+    private static string? LarkanaImage;
+    private static string? Sukkurmsg { get; set; }
+    private static string? SukkurImage;
+    private static string? Shikarpurmsg { get; set; }
+    private static string? ShikarpurImage;
+    private static string? Pakmsg { get; set; }
+    private static string? PakImage;
+
+
+
+    List<string> imageUrls = new List<string>();
+    // List of model 
+    private List<HomeFloodInfoModel> info_model = new List<HomeFloodInfoModel>();
+    private List<LarkanaModel> info_larkana_model = new List<LarkanaModel>();
+    private List<SukkurModel> info_Sukkur_model = new List<SukkurModel>();
+    private List<ShikarpurModel> info_Shikarpur_model = new List<ShikarpurModel>();
+    private List<PakFloodInfoModel> info_pak_model = new List<PakFloodInfoModel>();
+
+
+    protected override void OnInitialized()
+    {
+        GetInfo();
+        GetLarkanaInfo();
+        GetSukkurInfo();
+        GetShikarpurInfo();
+        GetPakFloodInfo();
+
+    }
+   
+
+    /// GEtting Flood INFormation
+    private void GetInfo()
+    {
+        info_model = HomeFloodInfoDAL.GetInfo();
+    }
+
+    private void GetLarkanaInfo()
+    {
+        info_larkana_model = LarkanaDAL.GetLarkanaInfo();
+    }
+
+    private void GetSukkurInfo()
+    {
+        info_Sukkur_model = SukkurDAL.GetSukkurInfo();
+    }
+    
+    private void GetShikarpurInfo()
+    {
+        info_Shikarpur_model = ShikarpurDAL.GetShikarpurInfo();
+    }
+    private void GetPakFloodInfo()
+    {
+        info_pak_model = PakFloodInfoDAL.GetPakFloodInfo();
+    }
+
+
+
+
+private async Task UploadImage(InputFileChangeEventArgs e, string bucketKey, string contentType, string infoImageModelKey)
+    {
+    IBrowserFile browserFile = e.File;
+
+    // Replace these placeholders with your AWS credentials
+    string awsAccessKeyId = "YOUR_AWS_ACCESS_KEY_ID";
+    string awsSecretAccessKey = "YOUR_AWS_SECRET_ACCESS_KEY";
+
+    using (var stream = new MemoryStream())
+    {
+        await browserFile.OpenReadStream().CopyToAsync(stream);
+
+        using (var s3Client = new AmazonS3Client(awsAccessKeyId, awsSecretAccessKey, Amazon.RegionEndpoint.USWest2)) // Use your region
+        {
+            var request = new PutObjectRequest
+                {
+                    BucketName = "flooddest",
+                    Key = browserFile.Name,
+                    InputStream = stream,
+                    ContentType = contentType,
+                    CannedACL = S3CannedACL.PublicRead
+                };
+
+            await s3Client.PutObjectAsync(request);
+
+            var urlRequest = new GetPreSignedUrlRequest
+                {
+                    BucketName = "flooddest",
+                    Key = browserFile.Name,
+                    Expires = DateTime.Now.AddYears(1)
+                };
+
+            var imgUrl = s3Client.GetPreSignedURL(urlRequest);
+
+            switch (infoImageModelKey)
+            {
+                case "Larkana":
+                    infoLarkanaModel.imageURL3 = imgUrl;
+                    break;
+                case "Sukkur":
+                    infoSukkurModel.imageURL4 = imgUrl;
+                    break;
+                case "Shikarpur":
+                    infoShikarpurModel.imageURL5 = imgUrl;
+                    break;
+                case "PakFlood":
+                    infoPakModel.imageURL6 = imgUrl;
+                    break;
+                default:
+                    infoModel.imageURL = imgUrl;
+                    break;
+            }
+        }
+    }
+    }
+
+
+    // Saving FLood info
+    public static async void SaveRegistrationForm(HomeFloodInfoModel infomodel)
+    {
+        try
+        {
+            infomodel.imageURL = imgurl;
+            SqlConnection con = DBHelper.GetConnection();
+            con.Open();
+            SqlCommand cmd = new SqlCommand("Sp_AddHomeFloodInfo", con);
+            
+            
+            cmd.Parameters.AddWithValue("@heading", infomodel.heading);
+            cmd.Parameters.AddWithValue("@info", infomodel.info);
+            cmd.Parameters.AddWithValue("@imageURL", infomodel.imageURL);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.ExecuteNonQuery();
+            infomodel = new HomeFloodInfoModel();
+            msg = "Data Saved Successfully";
+            con.Close();
+
+        }
+        catch (Exception ex)
+        {
+
+            // string exceptionDetails = ex.Message.ToString() + ex.StackTrace.ToString();
+            // GetError(exceptionDetails);
+        }
+    }
+    // Saving Larkana info
+    public static  void SaveLarkanaRegistrationForm(LarkanaModel infoLarkanamodel)
+    {
+        try
+        {
+            infoLarkanamodel.imageURL3 = LarkanaImage;
+            SqlConnection con = DBHelper.GetConnection();
+            con.Open();
+            SqlCommand cmd = new SqlCommand("Sp_Larkana", con);
+
+            // Team Information
+            //cmd.Parameters.AddWithValue("@TeamId", registrationForm.TeamId);
+            cmd.Parameters.AddWithValue("@heading", infoLarkanamodel.heading);
+            cmd.Parameters.AddWithValue("@info", infoLarkanamodel.info);
+            cmd.Parameters.AddWithValue("@imageURL3", infoLarkanamodel.imageURL3);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.ExecuteNonQuery();
+            infoLarkanamodel = new LarkanaModel();
+            Larkanamsg = "Data Saved Successfully";
+            con.Close();
+
+        }
+        catch (Exception ex)
+        {
+
+            // string exceptionDetails = ex.Message.ToString() + ex.StackTrace.ToString();
+            // GetError(exceptionDetails);
+        }
+    }
+
+
+
+    // Saving Sukkur info
+    public static void SaveSukkurRegistrationForm(SukkurModel infoSukkurmodel)
+    {
+        try
+        {
+            infoSukkurmodel.imageURL4 = SukkurImage;
+            SqlConnection con = DBHelper.GetConnection();
+            con.Open();
+            SqlCommand cmd = new SqlCommand("Sp_AddSukkur", con);
+
+            // Team Information
+            //cmd.Parameters.AddWithValue("@TeamId", registrationForm.TeamId);
+            cmd.Parameters.AddWithValue("@heading", infoSukkurmodel.heading);
+            cmd.Parameters.AddWithValue("@info", infoSukkurmodel.info);
+            cmd.Parameters.AddWithValue("@imageURL4", infoSukkurmodel.imageURL4);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.ExecuteNonQuery();
+            infoSukkurmodel = new SukkurModel();
+            Larkanamsg = "Data Saved Successfully";
+            con.Close();
+
+        }
+        catch (Exception ex)
+        {
+
+            // string exceptionDetails = ex.Message.ToString() + ex.StackTrace.ToString();
+            // GetError(exceptionDetails);
+        }
+    }
+
+
+
+    // Saving Shikarpur info
+    public static void SaveShikarpurRegistrationForm(ShikarpurModel infoShikarpurmodel)
+    {
+        try
+        {
+            infoShikarpurmodel.imageURL5 = ShikarpurImage;
+            SqlConnection con = DBHelper.GetConnection();
+            con.Open();
+            SqlCommand cmd = new SqlCommand("Sp_AddShikarpur", con);
+
+            // Team Information
+            //cmd.Parameters.AddWithValue("@TeamId", registrationForm.TeamId);
+            cmd.Parameters.AddWithValue("@heading", infoShikarpurmodel.heading);
+            cmd.Parameters.AddWithValue("@info", infoShikarpurmodel.info);
+            cmd.Parameters.AddWithValue("@imageURL5", infoShikarpurmodel.imageURL5);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.ExecuteNonQuery();
+            infoShikarpurmodel = new ShikarpurModel();
+            Larkanamsg = "Data Saved Successfully";
+            con.Close();
+
+        }
+        catch (Exception ex)
+        {
+
+            // string exceptionDetails = ex.Message.ToString() + ex.StackTrace.ToString();
+            // GetError(exceptionDetails);
+        }
+    }
+
+    // Saving Pak Flood  info
+    public static void SavePakFloodRegistrationForm(PakFloodInfoModel infoPakmodel)
+    {
+        try
+        {
+            infoPakmodel.imageURL6 = PakImage;
+            SqlConnection con = DBHelper.GetConnection();
+            con.Open();
+            SqlCommand cmd = new SqlCommand("Sp_AddPakFloodInfo", con);
+
+            // Team Information
+            //cmd.Parameters.AddWithValue("@TeamId", registrationForm.TeamId);
+            cmd.Parameters.AddWithValue("@heading", infoPakmodel.heading);
+            cmd.Parameters.AddWithValue("@info", infoPakmodel.info);
+            cmd.Parameters.AddWithValue("@imageURL6", infoPakmodel.imageURL6);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.ExecuteNonQuery();
+            infoPakmodel = new PakFloodInfoModel();
+            Pakmsg = "Data Saved Successfully";
+            con.Close();
+
+        }
+        catch (Exception ex)
+        {
+
+            // string exceptionDetails = ex.Message.ToString() + ex.StackTrace.ToString();
+            // GetError(exceptionDetails);
+        }
+    }
+
+
+
+
+    //FLood INFRO
+    private  void SaveInformation()
+    {
+        SaveRegistrationForm(infoModel);
+        GetInfo();
+    }
+
+    private void DeleteInformation(int id)
+    {
+        int i = HomeFloodInfoDAL.DeleteInfo(id);
+        if (i == 1)
+        {
+            msg = "Successfully Deleted...";
+            GetInfo();
+        }
+        else
+        {
+            msg = "Error deleting...";
+        }
+    }
+
+    //Larkana
+    private  void SaveLarkanaInformation()
+    {
+        SaveLarkanaRegistrationForm(infoLarkanaModel);
+        GetLarkanaInfo();
+    }
+
+    private void DeleteLarkanaInfo(int id)
+    {
+        int i = LarkanaDAL.DeleteLarkanaInfo(id);
+        if (i == 1)
+        {
+            Larkanamsg = "Successfully Deleted...";
+            GetLarkanaInfo();
+        }
+        else
+        {
+            Larkanamsg = "Error deleting...";
+        }
+    }
+
+
+    //Sukkur 
+    private void SaveSukkurInformation()
+    {
+        SaveSukkurRegistrationForm(infoSukkurModel);
+        GetSukkurInfo();
+    }
+
+    private void DeleteSukkurInfo(int id)
+    {
+        int i = SukkurDAL.DeleteSukkurInfo(id);
+        if (i == 1)
+        {
+            Sukkurmsg = "Successfully Deleted...";
+            GetSukkurInfo();
+        }
+        else
+        {
+            Sukkurmsg = "Error deleting...";
+        }
+    }
+
+    //Shikarpur
+    private void SaveShikarpurInformation()
+    {
+        SaveShikarpurRegistrationForm(infoShikarpurModel);
+        GetShikarpurInfo();
+    }
+
+    private void DeleteShikarpurInfo(int id)
+    {
+        int i = ShikarpurDAL.DeleteShikarpurInfo(id);
+        if (i == 1)
+        {
+            Shikarpurmsg = "Successfully Deleted...";
+            GetShikarpurInfo();
+        }
+        else
+        {
+            Shikarpurmsg = "Error deleting...";
+        }
+    }
+
+    //Shikarpur
+    private void SavePakFloodInformation()
+    {
+        SavePakFloodRegistrationForm(infoPakModel);
+        GetPakFloodInfo();
+    }
+
+    private void DeletePakFloodInfo(int id)
+    {
+        int i = PakFloodInfoDAL.DeletePakFloodInfo(id);
+        if (i == 1)
+        {
+            Pakmsg = "Successfully Deleted...";
+            GetPakFloodInfo();
+        }
+        else
+        {
+            Pakmsg = "Error deleting...";
+        }
+    }
+
+
+
+// ADMIN SIGNUP
+
+    string staticUsername = "admin";
+    string staticPassword = "admin";
+
+    string usernameInput = "";
+    string passwordInput = "";
+    bool isLoggedIn = false;
+    string errorMessage = "";
+
+    // Method to handle login attempt
+    void HandleLogin()
+    {
+        if (usernameInput == staticUsername && passwordInput == staticPassword)
+        {
+            isLoggedIn = true;
+        }
+        else
+        {
+            // Reset the form
+            usernameInput = "";
+            passwordInput = "";
+            // Display error message
+            errorMessage = "Invalid username/password";
+        }
+    }
+}
+
+
+
+
+
+ *@

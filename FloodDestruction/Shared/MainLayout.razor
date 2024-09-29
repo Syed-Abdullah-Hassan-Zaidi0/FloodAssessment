@@ -1,0 +1,18 @@
+﻿@inherits LayoutComponentBase
+
+<PageTitle>FloodDestruction</PageTitle>
+
+<CascadingAuthenticationState>
+    <AuthorizeView Roles="Administrator">
+        <Authorized>
+            <NavMenu />
+            @Body
+            <Footer />
+        </Authorized>
+        <NotAuthorized>
+            <NavMenu />
+            @Body
+            <Footer />
+        </NotAuthorized>
+    </AuthorizeView>
+</CascadingAuthenticationState>
